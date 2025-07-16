@@ -1,0 +1,33 @@
+{
+  "name": "usestack",
+  "version": "1.0.0",
+  "description": "This package allows users to use stack in there react app",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts"
+  },
+  "keywords": [
+    "react",
+    "hook",
+    "stack",
+    "custom hook",
+    "typescript"
+  ],
+  "author": "Akshay Singh",
+  "license": "ISC",
+  "peerDependencies": {
+    "react": "^17.0.0 || ^18.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "react": "^18.2.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.0.0"
+  }
+}
