@@ -26,7 +26,7 @@ yarn add useStack
 
 ```jsx
 import React, { useState, useEffect, useRef } from 'react';
-import { useStack } from 'use-stack-hook';
+import { useStack } from 'useStack';
 
 export default function StackExample() {
   const {
