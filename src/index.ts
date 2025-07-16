@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useRef, useState } from 'react';
 
 export type StackHook<T> = {
   push: (item: T) => void;
@@ -11,54 +11,52 @@ export type StackHook<T> = {
   size: () => number;
   values: () => T[];
   print: () => void;
-  versionRef: React.MutableRefObject<number>;
+  version: number;
 };
 
 export function useStack<T>(): StackHook<T> {
   const stackRef = useRef<T[]>([]);
-  const versionRef = useRef<number>(0);
+  const [version, setVersion] = useState<number>(0);
 
-  const triggerVersion = () => {
-    versionRef.current++;
+  const triggerVersionUpdate = () => setVersion(v => v + 1);
+
+  const push = (item: T) => {
+    stackRef.current.push(item);
+    triggerVersionUpdate();
   };
 
-  const push = useCallback((item: T) => {
-    stackRef.current.push(item);
-    triggerVersion();
-  }, []);
-
-  const pop = useCallback(() => {
+  const pop = () => {
     const popped = stackRef.current.pop();
-    triggerVersion();
+    triggerVersionUpdate();
     return popped;
-  }, []);
+  };
 
-  const peek = useCallback(() => {
+  const peek = () => {
     const items = stackRef.current;
     return items[items.length - 1];
-  }, []);
+  };
 
-  const clear = useCallback(() => {
+  const clear = () => {
     stackRef.current = [];
-    triggerVersion();
-  }, []);
+    triggerVersionUpdate();
+  };
 
-  const reverse = useCallback(() => {
+  const reverse = () => {
     stackRef.current.reverse();
-    triggerVersion();
-  }, []);
+    triggerVersionUpdate();
+  };
 
-  const sort = useCallback((compareFn?: (a: T, b: T) => number) => {
+  const sort = (compareFn?: (a: T, b: T) => number) => {
     stackRef.current.sort(compareFn);
-    triggerVersion();
-  }, []);
+    triggerVersionUpdate();
+  };
 
-  const isEmpty = useCallback(() => stackRef.current.length === 0, []);
-  const size = useCallback(() => stackRef.current.length, []);
-  const values = useCallback(() => [...stackRef.current], []);
-  const print = useCallback(() => {
+  const isEmpty = () => stackRef.current.length === 0;
+  const size = () => stackRef.current.length;
+  const values = () => [...stackRef.current];
+  const print = () => {
     console.log('[Stack contents top → bottom]:', [...stackRef.current].reverse());
-  }, []);
+  };
 
   return {
     push,
@@ -71,6 +69,6 @@ export function useStack<T>(): StackHook<T> {
     size,
     values,
     print,
-    versionRef, // used externally to detect stack updates
+    version,
   };
 }
