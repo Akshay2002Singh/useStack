@@ -1,4 +1,4 @@
-# use-stack-hook
+# useStack
 
 [![npm version](https://badge.fury.io/js/useStack.svg)](https://badge.fury.io/js/useStack) [![npm](https://img.shields.io/npm/dw/useStack.svg?logo=npm)](https://www.npmjs.com/package/useStack) [![npm](https://img.shields.io/bundlephobia/minzip/useStack)](https://www.npmjs.com/package/useStack)
 
