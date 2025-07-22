@@ -25,10 +25,11 @@ yarn add useStack
 ### Basic Example
 
 ```jsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useStack } from 'useStack';
 
 export default function StackExample() {
+  // Initialize the stack with some starting values
   const {
     push,
     pop,
@@ -39,33 +40,39 @@ export default function StackExample() {
     isEmpty,
     size,
     values,
-    print,
-    version, //initial value is 0
-  } = useStack<number>();
+    print,  // for debugging
+    version,
+  } = useStack<number>([5, 10, 15]); // bottom to top order (15 will be on top of stack) 
 
   useEffect(() => {
-    if(version){
-        console.log("🔁 Stack updated:");
-        console.log("Top of Stack:", peek());
-        console.log("Size:", size());
-        console.log("isEmpty:", isEmpty());
-        console.log("Values:", JSON.stringify(values()));
+    if (version) {
+      console.log('🔁 Stack updated:');
+      console.log('Top of Stack:', peek());
+      console.log('Size:', size());
+      console.log('isEmpty:', isEmpty());
+      console.log('Values:', JSON.stringify(values()));
     }
-  }, [version])
-
+  }, [version]);
 
   return (
     <div>
       <h2>React Stack Hook Example</h2>
 
-      <div>
+      <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
         <button onClick={() => push(Math.floor(Math.random() * 100))}>Push Random</button>
-        <button onClick={pop}>Pop</button>
-        <button onClick={() => alert(`Peek: ${peek() ?? 'None'}`)} disabled={isEmpty()}>Peek</button>
+        <button onClick={pop} disabled={isEmpty()}>Pop</button>
+        <button onClick={() => alert(`Peek: ${peek() ?? 'None'}`)} disabled={isEmpty()}>
+          Peek
+        </button>
         <button onClick={reverse} disabled={isEmpty()}>Reverse</button>
         <button onClick={() => sort((a, b) => a - b)} disabled={isEmpty()}>Sort Asc</button>
-        <button onClick={clear}>Clear</button>
-        <button onClick={print}>Print to Console</button> // Print function is useful while debuging
+        <button onClick={clear} disabled={isEmpty()}>Clear</button>
+        <button onClick={print}>Print to Console</button>
+      </div>
+
+      <div style={{ marginTop: '20px' }}>
+        <strong>Current Stack:</strong>
+        <pre>{JSON.stringify(values().slice().reverse(), null, 2)}</pre>
       </div>
     </div>
   );

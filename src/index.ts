@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 
 export type StackHook<T> = {
   push: (item: T) => void;
@@ -14,48 +14,53 @@ export type StackHook<T> = {
   version: number;
 };
 
-export function useStack<T>(): StackHook<T> {
-  const stackRef = useRef<T[]>([]);
+export function useStack<T>(initialValues: T[] = []): StackHook<T> {
+  const [stack, setStack] = useState<T[]>([...initialValues]);
   const [version, setVersion] = useState<number>(0);
 
-  const triggerVersionUpdate = () => setVersion(v => v + 1);
-
   const push = (item: T) => {
-    stackRef.current.push(item);
-    triggerVersionUpdate();
+    setStack(prev => {
+      const newStack = [...prev, item];
+      return newStack;
+    });
+    setVersion(v => v + 1);
   };
 
-  const pop = () => {
-    const popped = stackRef.current.pop();
-    triggerVersionUpdate();
+  const pop = (): T | undefined => {
+    let popped: T | undefined;
+    setStack(prev => {
+      const newStack = [...prev];
+      popped = newStack.pop();
+      return newStack;
+    });
+    setVersion(v => v + 1);
     return popped;
   };
 
-  const peek = () => {
-    const items = stackRef.current;
-    return items[items.length - 1];
+  const peek = (): T | undefined => {
+    return stack[stack.length - 1];
   };
 
   const clear = () => {
-    stackRef.current = [];
-    triggerVersionUpdate();
+    setStack([]);
+    setVersion(v => v + 1);
   };
 
   const reverse = () => {
-    stackRef.current.reverse();
-    triggerVersionUpdate();
+    setStack(prev => [...prev].reverse());
+    setVersion(v => v + 1);
   };
 
   const sort = (compareFn?: (a: T, b: T) => number) => {
-    stackRef.current.sort(compareFn);
-    triggerVersionUpdate();
+    setStack(prev => [...prev].sort(compareFn));
+    setVersion(v => v + 1);
   };
 
-  const isEmpty = () => stackRef.current.length === 0;
-  const size = () => stackRef.current.length;
-  const values = () => [...stackRef.current];
+  const isEmpty = () => stack.length === 0;
+  const size = () => stack.length;
+  const values = () => [...stack];
   const print = () => {
-    console.log('[Stack contents top → bottom]:', [...stackRef.current].reverse());
+    console.log('[Stack contents top → bottom]:', [...stack].reverse());
   };
 
   return {
