@@ -5,8 +5,10 @@ export type StackHook<T> = {
   pop: () => T | undefined;
   peek: () => T | undefined;
   clear: () => void;
+  reset: () => void;
   reverse: () => void;
   sort: (compareFn?: (a: T, b: T) => number) => void;
+  shuffle: () => void;
   isEmpty: () => boolean;
   size: () => number;
   values: () => T[];
@@ -24,6 +26,21 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
       return newStack;
     });
     setVersion(v => v + 1);
+  };
+
+  const reset = () => {
+    setStack([...initialValues]);
+  };
+
+  const shuffle = () => {
+    setStack(prev => {
+      const shuffled = [...prev];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    });
   };
 
   const pop = (): T | undefined => {
@@ -66,6 +83,8 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
   return {
     push,
     pop,
+    reset,
+    shuffle,
     peek,
     clear,
     reverse,

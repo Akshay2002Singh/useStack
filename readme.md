@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/useStack.svg)](https://badge.fury.io/js/useStack) [![npm](https://img.shields.io/npm/dw/useStack.svg?logo=npm)](https://www.npmjs.com/package/useStack) [![npm](https://img.shields.io/bundlephobia/minzip/useStack)](https://www.npmjs.com/package/useStack)
 
-A lightweight React hook that provides stack operations (push, pop, peek, etc).
+A lightweight React hook that provides stack operations (push, pop, peek, etc) as well as features like sort and shuffle etc..
 
 ---
 
@@ -35,6 +35,8 @@ export default function StackExample() {
     pop,
     peek,
     clear,
+    reset,
+    shuffle,
     reverse,
     sort,
     isEmpty,
