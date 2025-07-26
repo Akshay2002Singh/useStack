@@ -17,19 +17,19 @@ export type StackHook<T> = {
 };
 
 export function useStack<T>(initialValues: T[] = []): StackHook<T> {
-  const [stack, setStack] = useState<T[]>([...initialValues]);
+  const [stack, setStack] = useState<T[]>([...initialValues]?.reverse()); 
   const [version, setVersion] = useState<number>(0);
 
   const push = (item: T) => {
     setStack(prev => {
-      const newStack = [...prev, item];
+      const newStack = [...prev, item];  
       return newStack;
     });
     setVersion(v => v + 1);
   };
 
   const reset = () => {
-    setStack([...initialValues]);
+    setStack([...initialValues]?.reverse());
     setVersion(v => v + 1);
   };
 
@@ -49,7 +49,7 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
     let popped: T | undefined;
     setStack(prev => {
       const newStack = [...prev];
-      popped = newStack.pop();
+      popped = newStack?.pop();
       return newStack;
     });
     setVersion(v => v + 1);
@@ -57,7 +57,7 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
   };
 
   const peek = (): T | undefined => {
-    return stack[stack.length - 1];
+    return stack[stack?.length - 1];
   };
 
   const clear = () => {
@@ -66,20 +66,20 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
   };
 
   const reverse = () => {
-    setStack(prev => [...prev].reverse());
+    setStack(prev => [...prev]?.reverse());
     setVersion(v => v + 1);
   };
 
   const sort = (compareFn?: (a: T, b: T) => number) => {
-    setStack(prev => [...prev].sort(compareFn));
+    setStack(prev => [...prev]?.sort(compareFn)?.reverse());
     setVersion(v => v + 1);
   };
 
-  const isEmpty = () => stack.length === 0;
-  const size = () => stack.length;
-  const values = () => [...stack];
+  const isEmpty = () => stack?.length === 0;
+  const size = () => stack?.length;
+  const values = () => [...stack]?.reverse();
   const print = () => {
-    console.log('[Stack contents top → bottom]:', [...stack].reverse());
+    console.log('[Stack contents top → bottom]:', [...stack]?.reverse()?.join(', '));
   };
 
   return {

@@ -1,6 +1,6 @@
 # useStack
 
-[![npm version](https://badge.fury.io/js/useStack.svg)](https://badge.fury.io/js/useStack) [![npm](https://img.shields.io/npm/dw/useStack.svg?logo=npm)](https://www.npmjs.com/package/useStack) [![npm](https://img.shields.io/bundlephobia/minzip/useStack)](https://www.npmjs.com/package/useStack)
+[![npm version](https://badge.fury.io/js/usestack.svg)](https://badge.fury.io/js/usestack) [![npm](https://img.shields.io/npm/dw/usestack.svg?logo=npm)](https://www.npmjs.com/package/usestack) [![npm](https://img.shields.io/bundlephobia/minzip/usestack)](https://www.npmjs.com/package/usestack)
 
 A lightweight React hook that provides stack operations (push, pop, peek, etc) as well as features like sort and shuffle etc..
 
@@ -8,14 +8,14 @@ A lightweight React hook that provides stack operations (push, pop, peek, etc) a
 
 ## Installation
 
-[![NPM](https://nodei.co/npm/useStack.png?compact=true)](https://nodei.co/npm/useStack/)
+[![NPM](https://nodei.co/npm/usestack.png?compact=true)](https://nodei.co/npm/usestack/)
 
 #### To install the latest stable version:
 
 ```sh
-npm install useStack
+npm install usestack
 # OR
-yarn add useStack
+yarn add usestack
 ```
 
 ---
@@ -26,7 +26,7 @@ yarn add useStack
 
 ```jsx
 import React, { useEffect } from 'react';
-import { useStack } from 'useStack';
+import { useStack } from 'usestack';
 
 export default function StackExample() {
   // Initialize the stack with some starting values
@@ -44,7 +44,7 @@ export default function StackExample() {
     values,
     print,  // for debugging
     version,
-  } = useStack<number>([5, 10, 15]); // bottom to top order (15 will be on top of stack) 
+  } = useStack<number>([5, 10, 15]); // top to bottom order (5 will be on top of stack) 
 
   useEffect(() => {
     if (version) {
@@ -67,7 +67,7 @@ export default function StackExample() {
           Peek
         </button>
         <button onClick={reverse} disabled={isEmpty()}>Reverse</button>
-        <button onClick={() => sort((a, b) => a - b)} disabled={isEmpty()}>Sort Asc</button>
+        <button onClick={() => sort((a, b) => a - b)} disabled={isEmpty()}>Sort</button>
         <button onClick={reset}>Reset</button>
         <button onClick={shuffle} disabled={isEmpty()}>Shuffle</button>
         <button onClick={clear} disabled={isEmpty()}>Clear</button>
