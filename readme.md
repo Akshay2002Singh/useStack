@@ -76,7 +76,7 @@ export default function StackExample() {
 
       <div style={{ marginTop: '20px' }}>
         <strong>Current Stack:</strong>
-        <pre>{JSON.stringify(values().slice().reverse(), null, 2)}</pre>
+        <pre>{JSON.stringify(values(), null, 2)}</pre>
       </div>
     </div>
   );
