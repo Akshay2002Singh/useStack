@@ -68,6 +68,8 @@ export default function StackExample() {
         </button>
         <button onClick={reverse} disabled={isEmpty()}>Reverse</button>
         <button onClick={() => sort((a, b) => a - b)} disabled={isEmpty()}>Sort Asc</button>
+        <button onClick={reset}>Reset</button>
+        <button onClick={shuffle} disabled={isEmpty()}>Shuffle</button>
         <button onClick={clear} disabled={isEmpty()}>Clear</button>
         <button onClick={print}>Print to Console</button>
       </div>

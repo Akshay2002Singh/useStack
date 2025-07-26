@@ -1,10 +1,15 @@
 {
   "name": "usestack",
-  "version": "1.0.0",
-  "description": "This package allows users to use stack in there react app",
+  "version": "1.0.1",
+  "homepage": "https://github.com/Akshay2002Singh/useStack#readme",
+  "bugs": {
+    "url": "https://github.com/Akshay2002Singh/useStack/issues"
+  },
+  "repository": "https://github.com/Akshay2002Singh/useStack",
+  "description": "This package allows users to use stacks in React applications as a custom hook.",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "module": "dist/index.esm.js",
   "files": [
     "dist"
   ],
@@ -13,13 +18,25 @@
   },
   "keywords": [
     "react",
-    "hook",
+    "react-hook",
+    "custom-hook",
+    "useStack",
+    "stack-hook",
+    "stack-structure",
+    "typescript",
+    "react-typescript",
+    "data-structures",
     "stack",
-    "custom hook",
-    "typescript"
+    "state-management",
+    "hooks-library",
+    "frontend-utils",
+    "react-utils",
+    "push-pop",
+    "javascript-stack",
+    "react-stack"
   ],
   "author": "Akshay Singh",
-  "license": "ISC",
+  "license": "MIT",
   "peerDependencies": {
     "react": "^17.0.0 || ^18.0.0"
   },

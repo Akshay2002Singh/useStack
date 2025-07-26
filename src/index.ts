@@ -30,6 +30,7 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
 
   const reset = () => {
     setStack([...initialValues]);
+    setVersion(v => v + 1);
   };
 
   const shuffle = () => {
@@ -41,6 +42,7 @@ export function useStack<T>(initialValues: T[] = []): StackHook<T> {
       }
       return shuffled;
     });
+    setVersion(v => v + 1);
   };
 
   const pop = (): T | undefined => {
