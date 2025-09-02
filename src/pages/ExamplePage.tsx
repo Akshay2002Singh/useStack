@@ -83,7 +83,7 @@ export default function StackDemo() {
 
   return (
     <div style={containerStyle}>
-      <h1 style={{ textAlign: "center" }}>🗂 useStack Demo</h1>
+      <h1 style={{ textAlign: "center" }}>useStack Demo</h1>
 
       <div style={cardStyle}>
         <h2>Stack Operations</h2>
