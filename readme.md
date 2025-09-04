@@ -4,6 +4,8 @@
 
 A lightweight React hook that provides stack operations (push, pop, peek, etc) as well as features like sort and shuffle etc..
 
+**Live Demo:** [akshay2002singh.github.io/useStack/](akshay2002singh.github.io/useStack/)
+
 ---
 
 ## Installation
